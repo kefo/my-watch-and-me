@@ -1,0 +1,4 @@
+RewriteEngine on
+# RewriteBase /fmr/
+RewriteCond $1 !^(index\.php|static|robots\.txt)
+RewriteRule ^(.*)$ /fmr/index.php/$1 [L]

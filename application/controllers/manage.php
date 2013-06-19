@@ -1,5 +1,17 @@
 <?php
 
+/*
+ * Model needs to:
+ *      Check logins, and do logouts
+ *  
+ *      Process tcx (unprocessed-tcx to processed and whatever that enatails)
+ *      What's new versus what is not
+ *      Process new runs
+ *      Process select runs
+ *      Process all runs, whether the first time or again
+ * 
+ */
+
 class Manage extends CI_Controller {
 	
 	public function __construct()

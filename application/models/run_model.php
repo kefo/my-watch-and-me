@@ -5,7 +5,7 @@ class Run_model extends CI_Model {
 	/*
 CREATE TABLE runs (
 	id int(11) NOT NULL AUTO_INCREMENT,
-	relativeuri char(40) NOT NULL,
+	runid char(40) NOT NULL,
 	date DATETIME NOT NULL,
 	seconds DOUBLE NOT NULL,
 	meters DOUBLE NOT NULL,

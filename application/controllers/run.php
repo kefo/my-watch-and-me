@@ -1,7 +1,6 @@
 <?php
 
-define("DATAPATH", "/home/kefo/Desktop/Kevin/Active/fw/public_html/data/"); 
-define("BASEURI", "http://3windmills.com/fw/");
+define("BASEURI", "http://3windmills.com/fmr/");
 
 class Run extends CI_Controller {
 	
@@ -32,16 +31,21 @@ class Run extends CI_Controller {
 	
 	public function add($id = "")
 	{
-		$file = DATAPATH . "tcx/" . $id . ".xml";
-		$added = $this->run_model->add_run($id, $file);
-		//echo $file;
-		//exit;
-		if ($added === 0) {
-			// Whoops, we don't have a page for that!
-			show_404();
-		} else {
-			echo $id . " Added.";
-		}
+            $uData = $this->session->all_userdata();
+            if (!$uData["logged_in"]) {
+                Header("Location: " . RELATIVEPATH . "manage/login?status=2");
+                exit;
+            }
+            $file = DATAPATH . "tcx/" . $id . ".xml";
+            $added = $this->run_model->add_run($id, $file);
+            //echo $file;
+            //exit;
+            if ($added === 0) {
+            	// Whoops, we don't have a page for that!
+                show_404();
+            } else {
+                echo $id . " Added.";
+            }
 	}
 	
 	public function geojson($id = "")
@@ -94,7 +98,7 @@ class Run extends CI_Controller {
 <![endif]-->
 
 <script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
-		<script src="/fw/run/' . $id . '/feature.geojson"></script>
+		<script src="' . RELATIVEPATH . 'run/' . $id . '/feature.geojson"></script>
 		</head>
 		<body>
 		<div id="map" style="width: 1200px; height: 600px"></div>

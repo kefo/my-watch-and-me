@@ -2,26 +2,20 @@
 		<table cellpadding="0" cellspacing="0" border="0" class="tablesorter table table-striped table-bordered" id="runsTable">
 			<thead> 
 				<tr> 
-					<th>Date</th>
-					<th>City</th>
-					<th>State</th>
-					<th>Country</th>
-					<th>Time</th>
-					<th>Distance (miles)</th>
-					<th>Pace</th>
+					<th>ID</th>
+					<th>Filesize</th>
+					<th>Filename</th>
+                                        <th> </th>
 				</tr>
 			<thead> 
 			<tbody> 
 			<?php 
-			foreach ($runs as $r) {
+			foreach ($tcxfiles as $r) {
 				echo "<tr>\n";
-				echo "\t<td><a href=\"" . $r["relativeuri"] . "/\">" . $r["date"] . "</a></td>\n";
-				echo "\t<td>" . $r["city"] . "</td>\n";
-				echo "\t<td>" . $r["statename"] . "</td>\n";
-				echo "\t<td>" . $r["country"] . "</td>\n";
-				echo "\t<td>" . $r["runtime"] . "</td>\n";
-				echo "\t<td>" . $r["miles"] . "</td>\n";
-				echo "\t<td>" . $r["pacetime"] . "</td>\n";
+				echo "\t<td>" . $r["id"] . "</td>\n";
+				echo "\t<td>" . $r["filesize"] . "</td>\n";
+				echo "\t<td>" . $r["filename"] . "</td>\n";
+                                echo "\t<td><a href=\"" . RELATIVEPATH . "run/" . $r["id"] . "/load\">Load</a></td>\n";
 				echo "</tr>\n";
 			}
 			?>

@@ -54,6 +54,8 @@
             <ul class="nav pull-right">
               <?php 
                 if (isset($userdata['logged_in']) && $userdata['logged_in']) { 
+                    echo '<li><a href="' . RELATIVEPATH . 'runs/unprocessed-runs">Unprocessed Runs</a></li>';
+                    echo '<li><a href="' . RELATIVEPATH . 'runs/process-tcx">Process TCX files</a></li>';
                     echo '<li><a href="' . RELATIVEPATH . 'manage/logout">Logout (' . $userdata['email'] . ')</a></li>';                    
                 } else {
                     echo '<li><a href="' . RELATIVEPATH . 'manage/login">Login</a></li>';

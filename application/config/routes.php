@@ -39,6 +39,8 @@
 */
 
 $route['runs'] = "runs/all";
+$route['runs/process-tcx'] = "runs/processtcx";
+$route['runs/unprocessed-runs'] = "runs/unprocessedruns";
 
 $route['run/([0-9]+)T([0-9]+)/tcx.xml'] = "run/tcx/$1T$2";
 $route['run/([0-9]+)T([0-9]+)/load'] = "run/add/$1T$2";

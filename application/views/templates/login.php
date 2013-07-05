@@ -16,6 +16,10 @@
                                 echo '<div class="alert alert-success">  
                                         <strong>Logged out</strong>
                                       </div>';
+                            } elseif ($login_status == "2") {
+                                echo '<div class="alert alert-error">  
+                                        <strong>You are not logged in!  You must be logged in to view the page requested.</strong>
+                                      </div>';
                             }
                             ?>
                             <div class="control-group">

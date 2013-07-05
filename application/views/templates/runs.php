@@ -15,7 +15,7 @@
 			<?php 
 			foreach ($runs as $r) {
 				echo "<tr>\n";
-				echo "\t<td><a href=\"" . $r["relativeuri"] . "/\">" . $r["date"] . "</a></td>\n";
+				echo "\t<td><a href=\"" . RELATIVEPATH . "run/" . $r["runid"] . "/\">" . $r["date"] . "</a></td>\n";
 				echo "\t<td>" . $r["city"] . "</td>\n";
 				echo "\t<td>" . $r["statename"] . "</td>\n";
 				echo "\t<td>" . $r["country"] . "</td>\n";

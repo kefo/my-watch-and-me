@@ -29,19 +29,29 @@ CREATE TABLE runs (
 		$this->load->database();
 		$this->load->helper('shared_funcs');
 	}
-	
-	public function get_run($id = FALSE)
+
+        public function run_exists($runid = FALSE)
 	{
-		if ($id === FALSE) return false;
-                $relativeURI = "run/" . $id;
-		$query = $this->db->get_where('runs', array('relativeuri' => $relativeURI));
+		if ($runid === FALSE) return false;
+		$query = $this->db->get_where('runs', array('runid' => $runid));
+		$results = $query->row_array();
+		if (count($results) > 0) {
+                    return true;
+                }
+                return false;
+	}
+        
+	public function get_run($runid = FALSE)
+	{
+		if ($runid === FALSE) return false;
+		$query = $this->db->get_where('runs', array('runid' => $runid));
 		$results = run_augment($query->row_array());
 		return $results;
 	}
 	
-	public function add_run($id = "00000000T000000", $file = false)
+	public function add_run($runid = "00000000T000000", $file = false)
 	{
-		$datets = strtotime($id);
+		$datets = strtotime($runid);
 		$date = date("Y-m-d H:i:s", $datets);
 		$d = array();
 		if ($file !== false || !file_exists( $file )) {
@@ -54,7 +64,7 @@ CREATE TABLE runs (
 		if ($d["valid"] == "1") {
 			$data = array(
 				'date' => $d["date"],
-				'relativeuri' => 'run/' . $id,
+				'runid' => $runid,
 				'seconds' => $d["seconds"],
 				'meters' => $d["meters"],
 				'latitude' => $d["lat"],
@@ -72,13 +82,18 @@ CREATE TABLE runs (
 			//print_r($data);
 			//echo "</pre>";
 			
+                        $this->db->flush_cache();
 			$this->db->from('runs');
-			$this->db->where('date', $date);
+			$this->db->where('runid', $runid);
 			if ($this->db->count_all_results() == 0) {
-				return $this->db->insert('runs', $data);
+                            $dbtrans = $this->db->insert('runs', $data);
 			} else {
-				return $this->db->update('runs', $data); 
+                            $this->db->from('runs');
+                            $this->db->where('runid', $runid);
+                            $dbtrans = $this->db->update('runs', $data); 
 			}
+                        $this->db->close();
+                        return $dbtrans;
 		} else {
 			return false;
 		}

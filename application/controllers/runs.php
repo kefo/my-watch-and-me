@@ -10,6 +10,12 @@ class Runs extends CI_Controller {
                 $this->load->library('session');
 	}
 
+        public function redirect()
+	{
+            header("Location: " . RELATIVEPATH . "runs/");
+            exit;
+	}
+        
 	public function all()
 	{
 		$data['runs'] = $this->runs_model->get_all();

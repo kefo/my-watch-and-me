@@ -50,7 +50,7 @@ $route['run/([0-9]+)T([0-9]+)'] = "run/html/$1T$2";
 
 $route['manage/login'] = "manage/login";
 
-$route['default_controller'] = "runs/all";
+$route['default_controller'] = "runs/redirect";
 $route['404_override'] = '';
 
 

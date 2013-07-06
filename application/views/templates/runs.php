@@ -1,4 +1,13 @@
 	<h1>Runs</h1>
+        <div>
+            <?php 
+                $distance_total = 0;
+		foreach ($runs as $r) {
+                    $distance_total += $r["miles"];
+                }
+                echo "Total distance (miles): " . $distance_total;
+            ?>
+        </div>
 		<table cellpadding="0" cellspacing="0" border="0" class="tablesorter table table-striped table-bordered" id="runsTable">
 			<thead> 
 				<tr> 

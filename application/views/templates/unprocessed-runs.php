@@ -1,4 +1,24 @@
         <script>
+           function processallruns(){
+                var rowid = rowid;
+                //$('#tbodyruns tr').each(
+                //    function() {
+                //        trid = $(this).attr("id");
+                //        setTimeout("loadrun('" + trid + "')", 2000);
+                //    }
+                // );
+                var t = 3000;
+                 $('#tbodyruns tr').each(function(i, current){
+                    setTimeout(function() {
+                        trid = $(current).attr("id");
+                        loadrun(trid);
+                        // in here perform an action on the current element in 'arts'
+                    }, t); 
+                    t += 3000;
+                 }
+                 );
+           }
+            
             function loadrun(rowid){
                 var rowid = rowid;
                 $('#'+rowid + ' td').css('background-color', '#fcf8e3');               
@@ -18,6 +38,9 @@
             }
         </script>
         <h1>Runs</h1>
+        <div>
+            <input type="button" value="Process ALL Runs" onclick="javascript:processallruns()" />
+        </div>
         <table cellpadding="0" cellspacing="0" border="0" class="tablesorter table table-striped table-bordered" id="runsTable">
             <thead> 
                 <tr> 
@@ -27,7 +50,7 @@
                     <th> </th>
 		</tr>
             <thead> 
-            <tbody> 
+            <tbody id="tbodyruns"> 
             <?php 
                 foreach ($xmlfiles as $r) {
                     echo "<tr id=\"" . $r["id"] . "\">\n";

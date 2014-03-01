@@ -187,7 +187,7 @@ CREATE TABLE runs (
         //echo $glookup_response."<br />";
         $dstOffset = $glookup_json["dstOffset"];
         $baseOffset = $glookup_json["rawOffset"];
-        if ($dstOffset != "" && $baseOffset != "") {
+        if ( strval($dstOffset) != "" && strval($baseOffset) != "") {
             $seconds_diff = intval($baseOffset) + intval($dstOffset);
             $datets = strtotime($date);
             //echo "Original date ts: " . $datets . "<br />";
